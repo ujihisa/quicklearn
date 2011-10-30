@@ -20,7 +20,7 @@ let s:quicklearn['c/clang/intermediate'] = {
       \   'parent': 'c/clang'},
       \ 'exec': [
       \   '%c %o %s -S -emit-llvm -o %s:p:r.ll',
-      \   'cat %s:p:r.ll %a',
+      \   'cat %s:p:r.ll',
       \   'rm -f %s:p:r.ll']}
 let s:quicklearn['c/clang-O3/intermediate'] = {
       \ 'meta': {
@@ -28,14 +28,14 @@ let s:quicklearn['c/clang-O3/intermediate'] = {
       \ 'cmdopt': '-O3',
       \ 'exec': [
       \   '%c %o %s -S -emit-llvm -o %s:p:r.ll',
-      \   'cat %s:p:r.ll %a',
+      \   'cat %s:p:r.ll',
       \   'rm -f %s:p:r.ll']}
 let s:quicklearn['c/gcc/intermediate'] = {
       \ 'meta': {
       \   'parent': 'c/gcc'},
       \ 'exec': [
       \   '%c %o %s -S -o %s:p:r.s',
-      \   'cat %s:p:r.s %a',
+      \   'cat %s:p:r.s',
       \   'rm -f %s:p:r.s']}
 let s:quicklearn['c/gcc-32/intermediate'] = {
       \ 'meta': {
@@ -43,7 +43,7 @@ let s:quicklearn['c/gcc-32/intermediate'] = {
       \ 'cmdopt': '-m32',
       \ 'exec': [
       \   '%c %o %s -S -o %s:p:r.s',
-      \   'cat %s:p:r.s %a',
+      \   'cat %s:p:r.s',
       \   'rm -f %s:p:r.s']}
 let s:quicklearn['haskell/ghc/intermediate'] = {
       \ 'meta': {
