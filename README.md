@@ -11,6 +11,8 @@ Quicklearn compiles the code you are writing, opens another window, and shows th
     * Core (ghc)
 * CoffeeScript
     * JavaScript
+* Ruby
+    * YARV Instructions (CRuby)
 
 ## Usage
 

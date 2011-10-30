@@ -28,8 +28,13 @@ let s:quicklearn['haskell/ghc/intermediate'] = {
       \ 'tempfile': '%{tempname()}.hs'}
 let s:quicklearn['coffee/intermediate'] = {
       \ 'command': 'coffee',
-      \ 'exec': ['%c %o -s'],
-        \ 'tempfile': '%{tempname()}.hs'}
+      \ 'exec': ['%c %o -s %s %a'],
+      \ 'tempfile': '%{tempname()}.hs'}
+let s:quicklearn['ruby/intermediate'] = {
+      \ 'command': 'ruby',
+      \ 'exec': ['%c %o %s %a'],
+      \ 'cmdopt': '--dump=insns',
+      \ 'tempfile': '%{tempname()}.rb'}
 
 for k in keys(s:quicklearn)
   let v = s:quicklearn[k]
