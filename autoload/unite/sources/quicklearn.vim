@@ -11,6 +11,8 @@ function! s:fmap(xs, f)
   endif
 endfunction
 
+let g:quicklearn_gcc_remote_url = get(g:, 'quicklearn_gcc_remote_url', 'localhost')
+
 let s:quicklearn = {}
 let s:source = {
       \ 'name': 'quicklearn',
@@ -18,33 +20,25 @@ let s:source = {
 let s:quicklearn['c/clang/intermediate'] = {
       \ 'meta': {
       \   'parent': 'c/clang'},
-      \ 'exec': [
-      \   '%c %o %s -S -emit-llvm -o %s:p:r.ll',
-      \   'cat %s:p:r.ll',
-      \   'rm -f %s:p:r.ll']}
+      \ 'exec': '%c %o %s -S -emit-llvm -o -'}
 let s:quicklearn['c/clang-O3/intermediate'] = {
       \ 'meta': {
       \   'parent': 'c/clang'},
       \ 'cmdopt': '-O3',
-      \ 'exec': [
-      \   '%c %o %s -S -emit-llvm -o %s:p:r.ll',
-      \   'cat %s:p:r.ll',
-      \   'rm -f %s:p:r.ll']}
+      \ 'exec': '%c %o %s -S -emit-llvm -o -'}
 let s:quicklearn['c/gcc/intermediate'] = {
       \ 'meta': {
       \   'parent': 'c/gcc'},
-      \ 'exec': [
-      \   '%c %o %s -S -o %s:p:r.s',
-      \   'cat %s:p:r.s',
-      \   'rm -f %s:p:r.s']}
+      \ 'exec': '%c %o %s -S -o -'}
 let s:quicklearn['c/gcc-32/intermediate'] = {
       \ 'meta': {
       \   'parent': 'c/gcc'},
       \ 'cmdopt': '-m32',
-      \ 'exec': [
-      \   '%c %o %s -S -o %s:p:r.s',
-      \   'cat %s:p:r.s',
-      \   'rm -f %s:p:r.s']}
+      \ 'exec': '%c %o %s -S -o -'}
+let s:quicklearn['c/gcc-remote/intermediate'] = {
+      \ 'meta': {
+      \   'parent': 'c/gcc'},
+      \ 'exec': 'ssh ' . g:quicklearn_gcc_remote_url . ' %c %o %s -S -o -'}
 let s:quicklearn['haskell/ghc/intermediate'] = {
       \ 'meta': {
       \   'parent': 'haskell/ghc'},
