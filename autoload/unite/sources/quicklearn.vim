@@ -77,8 +77,8 @@ endfor
 for k in keys(s:quicklearn)
   let v = s:quicklearn[k]
   let s:quicklearn[k].quickrun_command = printf(
-        \ 'QuickRun -type %s %s %s -cmdopt %s',
-        \ v.meta.parent,
+        \ 'QuickRun %s %s %s -cmdopt %s',
+        \ v.meta.parent == '_' ? '' : '-type ' . v.meta.parent,
         \ get(v, 'command') ? '-command ' . string(v.command) : '',
         \ join(s:fmap(get(v, 'exec', []), '"-exec " . string(v:val)'), ' '),
         \ string(get(v, 'cmdopt', '')))
