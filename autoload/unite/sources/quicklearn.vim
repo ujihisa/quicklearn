@@ -22,9 +22,25 @@ let s:quicklearn['c/clang/intermediate'] = {
       \   '%c %o %s -S -emit-llvm -o %s:p:r.ll',
       \   'cat %s:p:r.ll %a',
       \   'rm -f %s:p:r.ll']}
+let s:quicklearn['c/clang-O3/intermediate'] = {
+      \ 'meta': {
+      \   'parent': 'c/clang'},
+      \ 'cmdopt': '-O3',
+      \ 'exec': [
+      \   '%c %o %s -S -emit-llvm -o %s:p:r.ll',
+      \   'cat %s:p:r.ll %a',
+      \   'rm -f %s:p:r.ll']}
 let s:quicklearn['c/gcc/intermediate'] = {
       \ 'meta': {
       \   'parent': 'c/gcc'},
+      \ 'exec': [
+      \   '%c %o %s -S -o %s:p:r.s',
+      \   'cat %s:p:r.s %a',
+      \   'rm -f %s:p:r.s']}
+let s:quicklearn['c/gcc-32/intermediate'] = {
+      \ 'meta': {
+      \   'parent': 'c/gcc'},
+      \ 'cmdopt': '-m32',
       \ 'exec': [
       \   '%c %o %s -S -o %s:p:r.s',
       \   'cat %s:p:r.s %a',
@@ -61,8 +77,9 @@ endfor
 for k in keys(s:quicklearn)
   let v = s:quicklearn[k]
   let s:quicklearn[k].quickrun_command = printf(
-        \ 'QuickRun %s %s -cmdopt %s',
-        \ v.command ? '-command ' . string(v.command) : '',
+        \ 'QuickRun -type %s %s %s -cmdopt %s',
+        \ v.meta.parent,
+        \ get(v, 'command') ? '-command ' . string(v.command) : '',
         \ join(s:fmap(get(v, 'exec', []), '"-exec " . string(v:val)'), ' '),
         \ string(get(v, 'cmdopt', '')))
 endfor
@@ -80,8 +97,8 @@ function! s:source.gather_candidates(args, context)
         \ "source": s:source.name,
         \ "kind": ["command"],
         \ "action__command": v:val.quickrun_command,
-        \ "action__type": ": ",
         \ }'))
+        "\ "action__type": ": ",
 endfunction
 
 let &cpo = s:save_cpo
