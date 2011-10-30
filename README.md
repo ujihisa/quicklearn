@@ -27,6 +27,12 @@ Quicklearn compiles the code you are writing, opens another window, and shows th
 
     :Unite quicklearn -immediately
 
+Sample configulation for `~/.vimrc`:
+
+    nnoremap <space>R :<C-u>Unite quicklearn -immediately<Cr>
+
+Don't forget the `-immediately` option.
+
 ## Author
 
 Tatsuhiro Ujihisa
