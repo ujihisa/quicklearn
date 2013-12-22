@@ -26,6 +26,15 @@ let s:quicklearn['c/clang-O3/intermediate'] = {
       \   'parent': 'c/clang'},
       \ 'cmdopt': '-O3',
       \ 'exec': '%c %o %s -S -emit-llvm -o -'}
+let s:quicklearn['cpp/clang/intermediate'] = {
+      \ 'meta': {
+      \   'parent': 'cpp/clang++'},
+      \ 'exec': '%c %o %s -S -emit-llvm -o -'}
+let s:quicklearn['cpp/clang-O3/intermediate'] = {
+      \ 'meta': {
+      \   'parent': 'cpp/clang++'},
+      \ 'cmdopt': '-O3',
+      \ 'exec': '%c %o %s -S -emit-llvm -o -'}
 let s:quicklearn['c/gcc/intermediate'] = {
       \ 'meta': {
       \   'parent': 'c/gcc'},
