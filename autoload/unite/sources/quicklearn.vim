@@ -65,26 +65,28 @@ let s:quicklearn['ruby/intermediate'] = {
       \ 'cmdopt': '--dump=insns'}
 
 " inheritance
-for k in keys(s:quicklearn)
-  let v = s:quicklearn[k]
+for s:k in keys(s:quicklearn)
+  let s:v = s:quicklearn[s:k]
   for item in ['command', 'exec', 'cmdopt', 'tempfile', 'eval_template']
-    let ofParent = get(g:quickrun#default_config[v.meta.parent], item)
+    let ofParent = get(g:quickrun#default_config[s:v.meta.parent], item)
     if type(ofParent) != type(0) || ofParent != 0
-      let s:quicklearn[k][item] = get(v, item, ofParent)
+      let s:quicklearn[s:k][item] = get(s:v, item, ofParent)
     endif
     unlet ofParent
   endfor
+  unlet! s:k s:v
 endfor
 
 " build quickrun command
-for k in keys(s:quicklearn)
-  let v = s:quicklearn[k]
-  let s:quicklearn[k].quickrun_command = printf(
+for s:k in keys(s:quicklearn)
+  let s:v = s:quicklearn[s:k]
+  let s:quicklearn[s:k].quickrun_command = printf(
         \ 'QuickRun %s %s %s -cmdopt %s',
-        \ v.meta.parent == '_' ? '' : '-type ' . v.meta.parent,
-        \ get(v, 'command') ? '-command ' . string(v.command) : '',
-        \ join(s:fmap(get(v, 'exec', []), '"-exec " . string(v:val)'), ' '),
-        \ string(get(v, 'cmdopt', '')))
+        \ s:v.meta.parent == '_' ? '' : '-type ' . s:v.meta.parent,
+        \ get(s:v, 'command') ? '-command ' . string(s:v.command) : '',
+        \ join(s:fmap(get(s:v, 'exec', []), '"-exec " . string(v:val)'), ' '),
+        \ string(get(s:v, 'cmdopt', '')))
+  unlet! s:k s:v
 endfor
 lockvar s:quicklearn
 
