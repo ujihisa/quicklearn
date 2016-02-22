@@ -67,14 +67,14 @@ let s:quicklearn['ruby/intermediate'] = {
 " inheritance
 for s:k in keys(s:quicklearn)
   let s:v = s:quicklearn[s:k]
-  for item in ['command', 'exec', 'cmdopt', 'tempfile', 'eval_template']
-    let ofParent = get(g:quickrun#default_config[s:v.meta.parent], item)
+  for s:item in ['command', 'exec', 'cmdopt', 'tempfile', 'eval_template']
+    let ofParent = get(g:quickrun#default_config[s:v.meta.parent], s:item)
     if type(ofParent) != type(0) || ofParent != 0
-      let s:quicklearn[s:k][item] = get(s:v, item, ofParent)
+      let s:quicklearn[s:k][s:item] = get(s:v, s:item, ofParent)
     endif
     unlet ofParent
   endfor
-  unlet! s:v
+  unlet! s:v s:item
 endfor
 unlet! s:k
 
