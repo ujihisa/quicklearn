@@ -76,6 +76,7 @@ for s:k in keys(s:quicklearn)
   endfor
   unlet! s:v
 endfor
+unlet! s:k
 
 " build quickrun command
 for s:k in keys(s:quicklearn)
@@ -88,6 +89,7 @@ for s:k in keys(s:quicklearn)
         \ string(get(s:v, 'cmdopt', '')))
   unlet! s:v
 endfor
+unlet! s:k
 lockvar s:quicklearn
 
 function! unite#sources#quicklearn#define()
