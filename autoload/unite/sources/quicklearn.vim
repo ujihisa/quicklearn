@@ -74,7 +74,7 @@ for s:k in keys(s:quicklearn)
     endif
     unlet ofParent
   endfor
-  unlet! s:k s:v
+  unlet! s:v
 endfor
 
 " build quickrun command
@@ -86,7 +86,7 @@ for s:k in keys(s:quicklearn)
         \ get(s:v, 'command') ? '-command ' . string(s:v.command) : '',
         \ join(s:fmap(get(s:v, 'exec', []), '"-exec " . string(v:val)'), ' '),
         \ string(get(s:v, 'cmdopt', '')))
-  unlet! s:k s:v
+  unlet! s:v
 endfor
 lockvar s:quicklearn
 
