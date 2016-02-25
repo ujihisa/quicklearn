@@ -36,3 +36,7 @@ Don't forget the `-immediately` option.
 ## Author
 
 Tatsuhiro Ujihisa
+
+# License
+
+GPLv3 or any later versions
