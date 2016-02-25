@@ -3,7 +3,7 @@ set cpo&vim
 
 " fmap([a, b, c], f) => [f(a), f(b), f(c)]
 " fmap(a, f) => [f(a)]
-function! s:fmap(xs, f)
+function! s:fmap(xs, f) abort
   if type(a:xs) == type([])
     return map(a:xs, a:f)
   else
@@ -92,11 +92,11 @@ endfor
 unlet! s:k
 lockvar s:quicklearn
 
-function! unite#sources#quicklearn#define()
+function! unite#sources#quicklearn#define() abort
   return s:source
 endfunction
 
-function! s:source.gather_candidates(args, context)
+function! s:source.gather_candidates(args, context) abort
   let configs = filter(copy(s:quicklearn), 'v:key =~ "^" . &filetype . "/"')
 
   return values(map(configs, '{
