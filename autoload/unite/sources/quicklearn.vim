@@ -39,6 +39,21 @@ let s:quicklearn['c/gcc/intermediate'] = {
       \ 'meta': {
       \   'parent': 'c/gcc'},
       \ 'exec': '%c %o %s -S -o -'}
+let s:quicklearn['c/gcc-O1/intermediate'] = {
+      \ 'meta': {
+      \   'parent': 'c/gcc'},
+      \ 'cmdopt': '-O1',
+      \ 'exec': '%c %o %s -S -o -'}
+let s:quicklearn['c/gcc-O2/intermediate'] = {
+      \ 'meta': {
+      \   'parent': 'c/gcc'},
+      \ 'cmdopt': '-O2',
+      \ 'exec': '%c %o %s -S -o -'}
+let s:quicklearn['c/gcc-O3/intermediate'] = {
+      \ 'meta': {
+      \   'parent': 'c/gcc'},
+      \ 'cmdopt': '-O3',
+      \ 'exec': '%c %o %s -S -o -'}
 let s:quicklearn['c/gcc-32/intermediate'] = {
       \ 'meta': {
       \   'parent': 'c/gcc'},
