@@ -33,6 +33,11 @@ Sample configulation for `~/.vimrc`:
 
 Don't forget the `-immediately` option.
 
+## Development TODOs
+
+* Document
+    * It's missing doc/quicklearn.txt
+
 ## Author
 
 Tatsuhiro Ujihisa
